@@ -35,7 +35,6 @@ for isub = 1:length(subjectsID)
     
     try
     fname = fullfile(D_load,['HG_rh_cg1.tif']);
-    %fname = fullfile(D_load,['rh_maskedAfterGrow_2thirdsAnt90_onecluster_' subjectsID{isub} '.tif']);
     tash = imread(fname);
     imshow(tash(:,:,1)==9&tash(:,:,2)==9);
     hg=zeros(600,600);
@@ -47,7 +46,7 @@ for isub = 1:length(subjectsID)
         end
     end
     [L_clusters, N_clusters] = bwlabeln(hg);
-    if N_clusters>1 % there are spurious voxels
+    if N_clusters>1
         S_clusters = histc(L_clusters(:),1:N_clusters);
         [~, indexC] = sort(S_clusters,'ascend');
         for ii = 1:length(indexC)-1
